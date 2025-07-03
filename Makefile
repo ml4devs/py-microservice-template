@@ -6,7 +6,7 @@ TEST_DIR = tests
 
 COVERAGE_DIR = $(THIS_MAKEFILE_DIR)htmlcov
 
-.PHONY: all clean typecheck lint test coverage run requirements
+.PHONY: all clean typecheck lint test coverage config run requirements
 
 all: typecheck lint coverage
 	@echo "\nPYTHONPATH=$(PYTHONPATH)\n"
@@ -36,6 +36,9 @@ coverage:
 		--asyncio-mode=strict \
 		$(TEST_DIR)
 
+config:
+	python -m mypkg.api.config
+
 run:
 	uvicorn mypkg.api.main:app --reload \
 		--env-file $(THIS_MAKEFILE_DIR).env
@@ -45,3 +48,9 @@ requirements:
 	rm -rf requirements/base.txt && pip-compile --strip-extras --output-file=requirements/base.txt requirements/base.in
 	rm -rf requirements/dev.txt  && pip-compile --strip-extras --output-file=requirements/dev.txt requirements/dev.in
 	pip-sync requirements/base.txt requirements/dev.txt
+
+integration:
+	curl -i -X GET \
+		http://localhost:8000/info
+
+smoke: config

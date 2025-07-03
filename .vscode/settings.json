@@ -1,0 +1,55 @@
+i{
+    "terminal.integrated.env.osx": {
+        "PYTHONPATH": "${workspaceFolder}/src:${workspaceFolder}/tests"
+    },
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}/src:${workspaceFolder}/tests"
+    },
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}/src:${workspaceFolder}/tests"
+    },
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/tests"
+    ],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "${workspaceFolder}/tests",
+        "--cov=${workspaceFolder}/src/mypkg"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+    },
+    "flake8.args": [
+        "--ignore=E501"
+    ],
+    "pylint.args": [
+        "--disable=C0114,C0115,C0116,C0301"
+    ],
+    "mypy-type-checker.args": [
+        "--check-untyped-defs",
+        "--namespace-packages",
+        "--explicit-package-bases"
+    ],
+    "isort.check": true,
+    "isort.args":["--profile", "black"],
+    "makefile.dryrunSwitches": [
+        "--always-make",
+        "--print-directory",
+        "--dry-run",
+        "--assume-old=Makefile",
+        "Makefile",
+        "all",
+        "AM_MAKEFLAGS=--assume-old=Makefile Makefile"
+    ],
+    "cSpell.words": [
+        "fastapi",
+        "httpx",
+        "mypkg"
+    ],
+    "makefile.configureOnOpen": false
+}
